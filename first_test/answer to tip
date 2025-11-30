@@ -120,7 +120,7 @@ Task1(1)   b₁ (a[0])   out
 线程1-监控out/线程2-接受用户输入：void run();
 exit（停止系统）：bool isRunning() const {return running.load();}
 
-//////////[主函数]//////////
+//////////主函数//////////
 1.创建TaskManager
 2.调用manager.run()→启动两个后台线程（t1、t2）
 3.主线程不断检查running
@@ -129,4 +129,3 @@ exit（停止系统）：bool isRunning() const {return running.load();}
     main() loop跳出
 5.main返回，manager自动析构
 6.析构函数安全停止所有任务和线程
-

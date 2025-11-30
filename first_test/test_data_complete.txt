@@ -1,45 +1,62 @@
-# 完整测试数据 - 综合测试所有功能
+ 完整测试数据 - 综合测试所有功能
 
 # 步骤1：创建基本流水线（Filter -> Gain）
 add 101 1
 add 102 2
-
 # 步骤2：测试基本功能
 callback 102 10
-
+write Filter-write Gain-102:10
+101:11
+out: 11
 # 步骤3：添加DelayBuffer任务
 add 103 3
-
 # 步骤4：测试完整流水线
 callback 103 15
-
+write Delay-103:15
+write Delay-write Gain-102:160
+103:16
+write Filter-101out: 161
+:161
 # 步骤5：修改Gain系数
 callback 102 3
-
+write Gain-102:3
+write Filter-101:4
+out: 4
 # 步骤6：测试新系数下的流水线
 callback 103 20
+write Delay-103:20
+write Delay-103write Filter-101:64:21
+write Gain-102:63
 
+out: 64
 # 步骤7：删除DelayBuffer任务
 pop
-
 # 步骤8：测试简化后的流水线
 callback 102 12
-
+write Gain-102:12
+write Filter-101:13
+out: 13
 # 步骤9：添加新的Gain任务
 add 104 2
 callback 104 2
-
+write Gain-102write Gain-:24
+104:2
+write Filter-101out: 25
+:25
 # 步骤10：测试新流水线（Filter -> Gain1 -> Gain2）
 callback 104 6
-
+write Gain-104:6
+write Gain-102:72
+write Filter-101:73
+out: 73
 # 步骤11：清理，删除所有任务
 pop
 pop
 pop
-
 # 步骤12：重新创建简单流水线测试
 add 201 3
 callback 201 30
-
-exit
-
+write Delay-201:30
+out: 30
+write Delay-out: 31
+201:31

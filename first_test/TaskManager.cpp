@@ -22,7 +22,7 @@ void TaskManager::addTask(int key, int kind) {
     unique_ptr<TaskBase> task;
     if (kind == 1) task = unique_ptr<TaskBase>(new TaskFilter(key, p_in, p_out));
     else if (kind == 2) task = unique_ptr<TaskBase>(new TaskGain(key, p_in, p_out));
-    else task = unique_ptr<TaskBase>(new TaskDelayBuffer(key, p_in, p_out));
+    else if (kind == 3) task = unique_ptr<TaskBase>(new TaskDelayBuffer(key, p_in, p_out));
     task->start();
     tasks.push_back(move(task));
 }
