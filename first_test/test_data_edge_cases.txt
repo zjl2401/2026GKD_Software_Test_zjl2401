@@ -1,0 +1,37 @@
+# 边界情况测试
+
+# 测试1：空流水线时pop（应该安全处理）
+pop
+
+# 测试2：添加多个相同key的任务（测试key的唯一性）
+add 1 1
+add 2 2
+add 3 3
+
+# 测试3：回调不存在的key（应该安全处理）
+callback 999 100
+
+# 测试4：连续pop
+pop
+pop
+pop
+pop
+
+# 测试5：添加后再立即pop
+add 10 1
+pop
+
+# 测试6：大数据值测试
+add 100 2
+callback 100 1000
+
+# 测试7：负数测试
+add 200 1
+callback 200 -5
+
+# 测试8：零值测试
+add 300 3
+callback 300 0
+
+exit
+
